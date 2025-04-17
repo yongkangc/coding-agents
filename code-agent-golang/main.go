@@ -7,9 +7,13 @@ import (
 	"os"
 
 	"github.com/anthropics/anthropic-sdk-go"
+	"github.com/joho/godotenv"
 )
 
 func main() {
+	// Load .env file if present
+	_ = godotenv.Load()
+
 	client := anthropic.NewClient()
 
 	scanner := bufio.NewScanner(os.Stdin)
