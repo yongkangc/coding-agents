@@ -70,3 +70,12 @@ func (a *Agent) Run(ctx context.Context) error {
 
 	return nil
 }
+
+func (a *Agent) runInference(ctx context.Context, conversation []anthropic.MessageParam) (*anthropic.Message, error) {
+	message, err := a.client.Messages.New(ctx, anthropic.MessageNewParams{
+		Model:     anthropic.ModelClaude3_7SonnetLatest,
+		MaxTokens: int64(1024),
+		Messages:  conversation,
+	})
+	return message, err
+}
